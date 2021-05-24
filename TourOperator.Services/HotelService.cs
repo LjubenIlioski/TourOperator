@@ -49,7 +49,7 @@ namespace TourOperator.Services
             return response;
         }
 
-        public List<Hotel> GetAllRecipes()
+        public List<Hotel> GetAllHotels()
         {
             return _hotelRepository.GetAll();
         }

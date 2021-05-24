@@ -43,7 +43,46 @@ namespace TourOperator.Controllers
             var viewModel = new HotelCreateModel();
             viewModel.HotelTypes = viewModels;
 
-            return View();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Create(HotelCreateModel hotel)
+        {
+            if (ModelState.IsValid)
+            {
+                var domainModel = hotel.ToHotelDomainModel();
+                var response = _hotelService.CreateHotel(domainModel);
+
+                if (response.IsSuccessful)
+                {
+                    var userId = User.FindFirst("Id");
+                  
+                    return RedirectToAction("ManageOverview", new { SuccessMessage = "Recipe created sucessfully" });
+                }
+                else
+                {
+                    return RedirectToAction("ManageOverview", new { ErrorMessage = response.Message });
+                }
+            }
+
+            var hotelTypes = _hotelTypeService.GetAll();
+            var viewModels = hotelTypes.Select(x => x.ToHotelTypeModel()).ToList();
+
+            hotel.HotelTypes = viewModels;
+
+            return View(hotel);
+        }
+
+        public IActionResult ManageOverview(string errorMessage, string successMessage)
+        {
+            ViewBag.ErrorMessage = errorMessage;
+            ViewBag.SuccessMessage = successMessage;
+            var hotels = _hotelService.GetAllHotels();
+
+            var viewModels = hotels.Select(x => x.ToOverviewModel()).ToList();
+
+            return View(viewModels);
         }
 
 

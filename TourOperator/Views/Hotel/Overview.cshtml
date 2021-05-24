@@ -33,7 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.OverviewHotels[0].HotelType)
             </th>
-            <th></th>
+          
         </tr>
     </thead>
     <tbody>
@@ -49,7 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Destination)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                <img src="item.ImageUrl">
+            
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -60,11 +61,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HotelType)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            
         </tr>
 }
     </tbody>

@@ -8,7 +8,7 @@ namespace TourOperator.Services.Interfaces
 {
     public interface IHotelService
     {
-        List<Hotel> GetAllRecipes();
+        List<Hotel> GetAllHotels();
 
         List<Hotel> GetHotelsWithFilters(string title);
 
