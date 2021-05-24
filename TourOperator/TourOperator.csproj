@@ -25,4 +25,8 @@
     <ProjectReference Include="..\TourOperator.Services\TourOperator.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

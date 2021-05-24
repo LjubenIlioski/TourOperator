@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;CreateRecipe
+using System.Collections.Generic;
 using System.Text;
 using TourOperator.Models;
 using TourOperator.Repositories.Interfaces;
@@ -10,7 +10,7 @@ namespace TourOperator.Services
 {
     public class HotelService : IHotelService
     {
-        private IHotelRepository _hotelRepository { get; set }
+        private IHotelRepository _hotelRepository { get; set; }
 
         public HotelService(IHotelRepository hotelRepository)
         {
@@ -54,9 +54,9 @@ namespace TourOperator.Services
             return _hotelRepository.GetAll();
         }
 
-        public List<Hotel> GetMostRecentRecipes(int count)
+        public List<Hotel> GetMostRecentHotels(int count)
         {
-            return _hotelRepository.GetMostRecentHotels();
+            return _hotelRepository.GetMostRecentHotels(count);
 
 
                 }
@@ -82,7 +82,7 @@ namespace TourOperator.Services
             return hotel;
         }
 
-        public List<Hotel> GetRecipesWithFilters(string title)
+        public List<Hotel> GetHotelsWithFilters(string title)
         {
             return _hotelRepository.GetHotelsWithFilters(title);
         }

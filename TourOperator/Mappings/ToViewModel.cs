@@ -23,5 +23,14 @@ namespace TourOperator.Mappings
                 HotelType = hotel.HotelType.Name
             };
         }
+
+        public static HotelTypeModel ToHotelTypeModel(this HotelType hotelType)
+        {
+            return new HotelTypeModel()
+            {
+                Id = hotelType.Id,
+                Name = hotelType.Name,
+            };
+        }
     }
 }

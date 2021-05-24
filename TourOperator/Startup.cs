@@ -12,10 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TourOperator.Data;
 using TourOperator.Models;
 using TourOperator.Repositories;
 using TourOperator.Repositories.Interfaces;
+using TourOperator.Services;
+using TourOperator.Services.Interfaces;
 
 namespace TourOperator
 {
@@ -52,9 +53,11 @@ namespace TourOperator
             services.AddRazorPages();
 
             //Register Services
-            services.AddTransient<IHotelSerive, HotelService>();
+            services.AddTransient<IHotelService, HotelService>();
+            services.AddTransient<IHotelTypeService, HotelTypeService>();
             //Register Repo
             services.AddTransient<IHotelRepository, HotelRepository>();
+            services.AddTransient<IHotelTypeRepository, HotelTypeRepository>();
 
         }
 
@@ -84,7 +87,7 @@ namespace TourOperator
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Hotel}/{action=Overview}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

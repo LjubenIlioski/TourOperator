@@ -10,20 +10,20 @@ namespace TourOperator.Services.Interfaces
     {
         List<Hotel> GetAllRecipes();
 
-        List<Hotel> GetRecipesWithFilters(string title);
+        List<Hotel> GetHotelsWithFilters(string title);
 
         Hotel GetRecipeById(int id);
 
-        StatusModel CreateRecipe(Hotel hotel);
+        StatusModel CreateHotel(Hotel hotel);
 
         StatusModel Delete(int id);
 
         StatusModel Update(Hotel hotel);
 
-        Hotel GetRecipeDetails(int id);
+        Hotel GetHotelDetails(int id);
 
-        List<Hotel> GetMostRecentRecipes(int count);
+        List<Hotel> GetMostRecentHotels(int count);
 
-        List<Hotel> GetTopHotels(int count);
+       
     }
 }
