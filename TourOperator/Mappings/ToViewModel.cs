@@ -33,6 +33,15 @@ namespace TourOperator.Mappings
             };
         }
 
+        public static HotelManageOverviewModel ToHotelMangeOverviewModel(this Hotel hotel)
+        {
+            return new HotelManageOverviewModel()
+            {
+                Id = hotel.Id,
+                Name = hotel.Name
+            };
+        }
+
        
     }
 }

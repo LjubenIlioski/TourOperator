@@ -23,9 +23,9 @@ namespace TourOperator.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Overview(string title)
+        public IActionResult Overview(string name)
         {
-            var hotels = _hotelService.GetHotelsWithFilters(title);
+            var hotels = _hotelService.GetHotelsWithFilters(name);
 
             var hotelOverviewDataModel = new HotelOverviewDataModel();
 
@@ -58,7 +58,7 @@ namespace TourOperator.Controllers
                 {
                     var userId = User.FindFirst("Id");
                   
-                    return RedirectToAction("ManageOverview", new { SuccessMessage = "Recipe created sucessfully" });
+                    return RedirectToAction("ManageOverview", new { SuccessMessage = "Hotel created sucessfully" });
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace TourOperator.Controllers
             ViewBag.SuccessMessage = successMessage;
             var hotels = _hotelService.GetAllHotels();
 
-            var viewModels = hotels.Select(x => x.ToOverviewModel()).ToList();
+            var viewModels = hotels.Select(x => x.ToHotelMangeOverviewModel()).ToList();
 
             return View(viewModels);
         }

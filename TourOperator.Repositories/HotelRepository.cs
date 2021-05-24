@@ -15,17 +15,17 @@ namespace TourOperator.Repositories
 
         }
 
-        public List<Hotel> GetHotelsWithFilters(string title)
+        public List<Hotel> GetHotelsWithFilters(string name)
         {
             var query = _context.Hotels.Include(x => x.HotelType);
-
-            if (title != null)
+            var hotels = query.ToList();
+            if (name != null)
             {
-                query.Where(x => x.Name.Contains(title));
+                var uery = query.Where(x => x.Name.Contains(name));
+                hotels = uery.ToList();
             }
 
-            var hotels = query.ToList();
-
+         
             return hotels;
         }
 

@@ -15,7 +15,7 @@ namespace TourOperator.Mappings
             {
                 Id = hotel.Id,
                 Name = hotel.Name,
-                Destination = hotel.Description,
+                Destination = hotel.Destination,
                 ImageUrl = hotel.ImageUrl,
                 Price = hotel.Price,
                 HotelTypeId = hotel.HotelTypeId,

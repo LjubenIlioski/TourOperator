@@ -6,9 +6,19 @@
 
 <h1>Overview</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
+
+<form action="/Hotel/Overview" method="get" style="width:500px" class="form-inline m-4">
+    <div class="form-group">
+        <input type="text" name="Name" value="" class="form-control" placeholder="Search by title" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -33,36 +43,37 @@
             <th>
                 @Html.DisplayNameFor(model => model.OverviewHotels[0].HotelType)
             </th>
-          
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.OverviewHotels) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination)
-            </td>
-            <td>
-                <img src="item.ImageUrl">
-            
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Views)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HotelType)
-            </td>
-            
-        </tr>
-}
+        @foreach (var item in Model.OverviewHotels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    <img src="item.ImageUrl">
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Views)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HotelType)
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>
