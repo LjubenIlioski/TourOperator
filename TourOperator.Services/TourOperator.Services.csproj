@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TourOperator.Models\TourOperator.Models.csproj" />
+    <ProjectReference Include="..\TourOperator.Repositories\TourOperator.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TourOperator.Data;
 using TourOperator.Models;
+using TourOperator.Repositories;
+using TourOperator.Repositories.Interfaces;
 
 namespace TourOperator
 {
@@ -48,6 +50,12 @@ namespace TourOperator
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //Register Services
+            services.AddTransient<IHotelSerive, HotelService>();
+            //Register Repo
+            services.AddTransient<IHotelRepository, HotelRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

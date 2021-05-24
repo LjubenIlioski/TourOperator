@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TourOperator.ViewModels;
 
 namespace TourOperator.Data
 {
@@ -12,5 +13,6 @@ namespace TourOperator.Data
             : base(options)
         {
         }
+        public DbSet<TourOperator.ViewModels.HotelOverviewModel> HotelOverviewModel { get; set; }
     }
 }
