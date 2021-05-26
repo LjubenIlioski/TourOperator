@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TourOperator.Models;
@@ -19,5 +20,7 @@ namespace TourOperator.Services.Interfaces
         StatusModel Update(Booking booking);
 
         string RandomGenerator(int length);
+
+        Booking GetBookingByProperties(CheckBookingDomain checkBookingDomain);
     }
 }

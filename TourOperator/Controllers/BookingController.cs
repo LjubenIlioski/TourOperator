@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TourOperator.Mappings;
+using TourOperator.Models;
+using TourOperator.Services.DtoModels;
 using TourOperator.Services.Interfaces;
 using TourOperator.ViewModels;
 
@@ -69,5 +71,32 @@ namespace TourOperator.Controllers
         {
             return View(bookingResult);
         }
+
+        [HttpGet]
+        public IActionResult CheckBooking()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CheckBooking(CheckBooking checkBooking)
+        {
+            var checkBookingDomain = checkBooking.ToCheckBookingDomainModel();
+            var booking = new Booking();
+
+            booking = _bookingService.GetBookingByProperties(checkBookingDomain);
+
+            var bookingViewModel = booking.ToBookingViewModel();
+
+            return RedirectToAction("BookingStatus", bookingViewModel);
+        }
+
+        public IActionResult BookingStatus(BookingViewModel bookingViewModel)
+        {
+            return View(bookingViewModel);
+        }
+
+
+
     }
 }

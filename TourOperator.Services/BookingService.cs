@@ -88,6 +88,11 @@ namespace TourOperator.Services
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        Booking IBookingService.GetBookingByProperties(Models.CheckBookingDomain checkBookingDomain)
+        {
+            return _bookingRepository.GetBookingByProperites(checkBookingDomain);
+        }
     }
     
 }

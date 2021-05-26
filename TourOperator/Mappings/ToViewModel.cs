@@ -102,6 +102,31 @@ namespace TourOperator.Mappings
             };
 
         }
+        public static BookingViewModel ToBookingViewModel(this  Booking booking)
+        {
+            return new BookingViewModel()
+            {
+
+                Id=booking.Id,
+                HotelId = booking.HotelId,
+                FromDate = booking.FromDate,
+                ToDate = booking.ToDate,
+                NumberOfPeople = booking.NumberOfPeople,
+                NumberOfRooms = booking.NumberOfRooms,
+                Name = booking.Name,
+                Surname = booking.Surname,
+                DateOfBirth = booking.DateOfBirth,
+                Email = booking.Email,
+                Phone = booking.Phone,
+                Address = booking.Address,
+                BookingCode = booking.BookingCode,
+                BookingStatus = booking.BookingStatus,
+
+
+
+            };
+
+        }
 
     }
 }

@@ -7,7 +7,6 @@ namespace TourOperator.Repositories.Interfaces
 {
     public interface IBookingRepository : IBaseRepository<Booking>
     {
-
-   
+        Booking GetBookingByProperites(CheckBookingDomain checkBookingDomain);
     }
 }

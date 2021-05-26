@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TourOperator.Models;
+using TourOperator.Services.DtoModels;
 using TourOperator.ViewModels;
 
 namespace TourOperator.Mappings
@@ -19,7 +20,7 @@ namespace TourOperator.Mappings
                 ImageUrl = hotel.ImageUrl,
                 Price = hotel.Price,
                 HotelTypeId = hotel.HotelTypeId,
-                Pool=hotel.Pool,
+                Pool = hotel.Pool,
                 Bar = hotel.Bar,
                 MiniBar = hotel.MiniBar,
                 Description = hotel.Description,
@@ -52,7 +53,7 @@ namespace TourOperator.Mappings
             return new Booking()
             {
 
-               
+
                 HotelId = booking.HotelId,
                 FromDate = booking.FromDate,
                 ToDate = booking.ToDate,
@@ -68,6 +69,18 @@ namespace TourOperator.Mappings
                 BookingStatus = booking.BookingStatus,
 
 
+
+            };
+
+        }
+
+        public static CheckBookingDomain ToCheckBookingDomainModel(this CheckBooking checkBooking)
+        {
+            return new CheckBookingDomain()
+            {
+
+                BookingCode = checkBooking.BookingCode,
+                LastName = checkBooking.LastName
 
             };
 
