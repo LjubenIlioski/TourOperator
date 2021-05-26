@@ -8,6 +8,5 @@ namespace TourOperator.Models
     {
         public string City { get; set; }
         
-
     }
 }

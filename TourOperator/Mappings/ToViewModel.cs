@@ -42,6 +42,66 @@ namespace TourOperator.Mappings
             };
         }
 
-       
+        public static HotelUpdateModel ToHotelUpdateModel(this Hotel hotel)
+        {
+            return new HotelUpdateModel()
+            {
+                Id = hotel.Id,
+                Name = hotel.Name,
+                Destination = hotel.Destination,
+                ImageUrl = hotel.ImageUrl,
+                Price = hotel.Price,
+                HotelTypeId = hotel.HotelTypeId,
+                Pool = hotel.Pool,
+                Bar = hotel.Bar,
+                MiniBar = hotel.MiniBar,
+                Description = hotel.Description,
+
+            };
+
+        }
+
+        public static HotelDetailsModel ToHotelDetailsModel(this Hotel hotel)
+        {
+            return new HotelDetailsModel()
+            {
+                Id = hotel.Id,
+                Name = hotel.Name,
+                Destination = hotel.Destination,
+                ImageUrl = hotel.ImageUrl,
+                Price = hotel.Price,
+                HotelTypeId = hotel.HotelTypeId,
+                Pool = hotel.Pool,
+                Bar = hotel.Bar,
+                MiniBar = hotel.MiniBar,
+                Description = hotel.Description,
+                Views=hotel.Views
+
+            };
+
+        }
+
+        public static HotelBookingModel ToHotelBookingModel(this Hotel hotel)
+        {
+            return new HotelBookingModel()
+            {
+                Id = hotel.Id,
+                Name = hotel.Name,
+                Destination = hotel.Destination,
+                ImageUrl = hotel.ImageUrl,
+                Price = hotel.Price,
+                HotelTypeId = hotel.HotelTypeId,
+                Pool = hotel.Pool,
+                Bar = hotel.Bar,
+                MiniBar = hotel.MiniBar,
+                Description = hotel.Description,
+                HotelType = hotel.HotelType.ToHotelTypeModel(),
+                
+
+
+            };
+
+        }
+
     }
 }
