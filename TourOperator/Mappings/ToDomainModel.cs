@@ -52,7 +52,7 @@ namespace TourOperator.Mappings
             return new Booking()
             {
 
-                Id = booking.Id,
+               
                 HotelId = booking.HotelId,
                 FromDate = booking.FromDate,
                 ToDate = booking.ToDate,

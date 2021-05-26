@@ -45,19 +45,29 @@ namespace TourOperator.Controllers
                 domainModel.BookingCode = _bookingService.RandomGenerator(6);
                 var response = _bookingService.CreateBooking(domainModel);
 
+                var bookingResult = new BookingResult();
+                bookingResult.IsSuccessful = response.IsSuccessful;
+                bookingResult.Code = domainModel.BookingCode;
+
+
                 if (response.IsSuccessful)
                 {
-                    var userId = User.FindFirst("Id");
-                    
-                    return RedirectToAction("ManageOverview", new { SuccessMessage = "Booking created sucessfully" });
+                    bookingResult.Message = "Booking created sucessfully";
+                    return RedirectToAction("BookingResult",bookingResult );
                 }
                 else
                 {
-                    return RedirectToAction("ManageOverview", new { ErrorMessage = response.Message });
+                    bookingResult.Message = response.Message;
+                    return RedirectToAction("BookingResult", bookingResult);
                 }
             }
             
             return View(booking);
+        }
+
+        public IActionResult BookingResult(BookingResult bookingResult)
+        {
+            return View(bookingResult);
         }
     }
 }
