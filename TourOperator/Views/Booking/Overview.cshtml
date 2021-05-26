@@ -1,0 +1,113 @@
+﻿@model TourOperator.ViewModels.BookingViewDataModel
+
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h1>Overview</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].FromDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].ToDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].NumberOfPeople)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].NumberOfRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].BookingCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverviewBookings[0].BookingStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OverviewBookings) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HotelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPeople)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
