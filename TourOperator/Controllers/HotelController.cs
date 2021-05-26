@@ -34,6 +34,17 @@ namespace TourOperator.Controllers
             return View(hotelOverviewDataModel);
         }
 
+        public IActionResult ManageOverview(string errorMessage, string successMessage)
+        {
+            ViewBag.ErrorMessage = errorMessage;
+            ViewBag.SuccessMessage = successMessage;
+            var hotels = _hotelService.GetAllHotels();
+
+            var viewModels = hotels.Select(x => x.ToHotelMangeOverviewModel()).ToList();
+
+            return View(viewModels);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -74,15 +85,120 @@ namespace TourOperator.Controllers
             return View(hotel);
         }
 
-        public IActionResult ManageOverview(string errorMessage, string successMessage)
+        [AllowAnonymous]
+        public IActionResult AdminDetails(int id)
         {
-            ViewBag.ErrorMessage = errorMessage;
-            ViewBag.SuccessMessage = successMessage;
-            var hotels = _hotelService.GetAllHotels();
+            try
+            {
+                var hotel = _hotelService.GetHotelById(id);
 
-            var viewModels = hotels.Select(x => x.ToHotelMangeOverviewModel()).ToList();
+                if (hotel == null)
+                {
+                    return RedirectToAction("ErrorNotFound", "Info");
+                }
 
-            return View(viewModels);
+                var hotelDetailsModel = hotel.ToHotelDetailsModel();
+
+                
+                return View(hotelDetailsModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("InternalError", "Info");
+            }
+        }
+
+        [AllowAnonymous]
+        public IActionResult Details(int id)
+        {
+            try
+            {
+                var hotel = _hotelService.GetHotelById(id);
+
+                if (hotel == null)
+                {
+                    return RedirectToAction("ErrorNotFound", "Info");
+                }
+
+                var hotelDetailsModel = hotel.ToHotelDetailsModel();
+
+
+                return View(hotelDetailsModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("InternalError", "Info");
+            }
+        }
+
+
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var response = _hotelService.Delete(id);
+
+                if (response.IsSuccessful)
+                {
+                    return RedirectToAction("ManageOverview", new { SuccessMessage = "Hotel deleted sucessfully" });
+                }
+                else
+                {
+                    return RedirectToAction("ManageOverview", new { ErrorMessage = response.Message });
+                }
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("InternalError", "Info");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var hotel = _hotelService.GetHotelById(id);
+
+            if (hotel == null)
+            {
+                return RedirectToAction("ManageOverview", new { ErrorMessage = "Hotel not found" });
+            }
+
+            var viewModel = hotel.ToHotelUpdateModel();
+
+            var recipeTypes = _hotelTypeService.GetAll();
+            var viewModels = recipeTypes.Select(x => x.ToHotelTypeModel()).ToList();
+
+            viewModel.HotelTypes = viewModels;
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Update(HotelUpdateModel hotel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var response = _hotelService.Update(hotel.ToHotelDomainModel());
+
+                    if (response.IsSuccessful)
+                    {
+                        return RedirectToAction("ManageOverview", new { SuccessMessage = "Hotel updated successfuly" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("ManageOverview", new { ErrorMessage = response.Message });
+                    }
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("InternalError", "Info");
+                }
+            }
+
+            return View(hotel);
         }
 
 

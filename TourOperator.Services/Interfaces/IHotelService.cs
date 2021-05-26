@@ -12,7 +12,7 @@ namespace TourOperator.Services.Interfaces
 
         List<Hotel> GetHotelsWithFilters(string title);
 
-        Hotel GetRecipeById(int id);
+        Hotel GetHotelById(int id);
 
         StatusModel CreateHotel(Hotel hotel);
 

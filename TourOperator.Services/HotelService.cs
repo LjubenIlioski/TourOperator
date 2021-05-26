@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using TourOperator.Models;
 using TourOperator.Repositories.Interfaces;
@@ -61,7 +63,7 @@ namespace TourOperator.Services
 
                 }
 
-        public Hotel GetRecipeById(int id)
+        public Hotel GetHotelById(int id)
         {
             return _hotelRepository.GetById(id);
         }
@@ -97,18 +99,26 @@ namespace TourOperator.Services
             var response = new StatusModel();
             var updatedHotel = _hotelRepository.GetById(hotel.Id);
 
+            
+
+
             if (updatedHotel != null)
             {
-                updatedHotel.Name = hotel.Name;
-                updatedHotel.Destination = hotel.Destination;
-                updatedHotel.ImageUrl = hotel.ImageUrl;
-                updatedHotel.Price = hotel.Price;
-                updatedHotel.Pool = hotel.Pool;
-                updatedHotel.Bar = hotel.Bar;
-                updatedHotel.MiniBar = hotel.MiniBar;
-                updatedHotel.Description = hotel.Description;
-                updatedHotel.DateModified = DateTime.Now;
-                updatedHotel.HotelTypeId = hotel.HotelTypeId;
+                foreach (PropertyInfo property in typeof(Hotel).GetProperties().Where(p => p.CanWrite))
+                {
+                    property.SetValue(updatedHotel, property.GetValue(hotel, null), null);
+                }
+
+                //updatedHotel.Name = hotel.Name;
+                //updatedHotel.Destination = hotel.Destination;
+                //updatedHotel.ImageUrl = hotel.ImageUrl;
+                //updatedHotel.Price = hotel.Price;
+                //updatedHotel.Pool = hotel.Pool;
+                //updatedHotel.Bar = hotel.Bar;
+                //updatedHotel.MiniBar = hotel.MiniBar;
+                //updatedHotel.Description = hotel.Description;
+                //updatedHotel.DateModified = DateTime.Now;
+                //updatedHotel.HotelTypeId = hotel.HotelTypeId;
 
                 _hotelRepository.Update(updatedHotel);
             }

@@ -38,5 +38,12 @@ namespace TourOperator.Repositories
         {
             return _context.Hotels.OrderByDescending(x => x.Views).Take(count).ToList();
         }
+
+        public override Hotel GetById(int entityId)
+        {
+            return _context.Set<Hotel>()
+                .Include(x => x.HotelType)
+                .FirstOrDefault(x=>x.Id==entityId);
+        }
     }
 }

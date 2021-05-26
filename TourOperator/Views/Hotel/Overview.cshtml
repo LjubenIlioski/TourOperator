@@ -18,62 +18,28 @@
 
 
 
+<div class="card-group">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].Destination)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].Views)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverviewHotels[0].HotelType)
-            </th>
+    @foreach (var item in Model.OverviewHotels)
+    {
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@item.ImageUrl" alt="Hotel Image">
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.OverviewHotels)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Destination)
-                </td>
-                <td>
-                    <img src="item.ImageUrl">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-title">@item.Destination</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price @item.Price <i class="fas fa-euro-sign"></i> </li>
+            <li class="list-group-item">@item.HotelType</li>
+            <li class="list-group-item">Views: @item.Views</li>
+        </ul>
+        <div class="card-body">
+            <a asp-controller="Hotel" asp-action="Details" asp-route-id="@item.Id">Details</a>
+        </div>
+    </div>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Views)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HotelType)
-                </td>
 
-            </tr>
-        }
-    </tbody>
-</table>
+        
+    }
+</div>
