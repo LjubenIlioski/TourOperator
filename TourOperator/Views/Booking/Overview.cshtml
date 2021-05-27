@@ -101,7 +101,8 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BookingStatus)
-                @Html.ActionLink("ChengeStatus", "ChengeStatus", new {  id=item.Id }) |
+
+                @Html.ActionLink("ChengeStatus", "ChangeStatus", new {  id=item.Id }) 
             </td>
             
         </tr>

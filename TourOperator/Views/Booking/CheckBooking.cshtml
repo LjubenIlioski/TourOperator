@@ -8,6 +8,15 @@
 
 <h4>CheckBooking</h4>
 <hr />
+
+@if (ViewBag.StatusMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.StatusMessage
+    </div>
+}
+
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CheckBooking">
@@ -30,7 +39,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Hotel"  asp-action="Overview">Back Home</a>
 </div>
 
 @section Scripts {

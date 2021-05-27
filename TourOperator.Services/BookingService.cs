@@ -63,11 +63,19 @@ namespace TourOperator.Services
 
             if (updatedetBooking != null)
             {
-                //MUST BE CHECKED
-                foreach (PropertyInfo property in typeof(Booking).GetProperties().Where(p => p.CanWrite))
-                {
-                    property.SetValue(updatedetBooking, property.GetValue(booking, null), null);
-                }
+                updatedetBooking.HotelId = booking.HotelId;
+                updatedetBooking.FromDate = booking.FromDate;
+                updatedetBooking.ToDate = booking.ToDate;
+                updatedetBooking.NumberOfPeople = booking.NumberOfPeople;
+                updatedetBooking.NumberOfRooms = booking.NumberOfRooms;
+                updatedetBooking.Name = booking.Name;
+                updatedetBooking.Surname = booking.Surname;
+                updatedetBooking.DateOfBirth = booking.DateOfBirth;
+                updatedetBooking.Email = booking.Email;
+                updatedetBooking.Phone = booking.Phone;
+                updatedetBooking.Address = booking.Address;
+                updatedetBooking.BookingCode = booking.BookingCode;
+                updatedetBooking.BookingStatus = booking.BookingStatus;
 
                 _bookingRepository.Update(updatedetBooking);
             }
@@ -94,5 +102,5 @@ namespace TourOperator.Services
             return _bookingRepository.GetBookingByProperites(checkBookingDomain);
         }
     }
-    
+
 }

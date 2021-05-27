@@ -11,7 +11,7 @@ namespace TourOperator.ViewModels
         public int Id { get; set; }
         [Required]
         public int HotelId { get; set; }
-        [Required]
+       
         public HotelBookingModel Hotel { get; set; }
         [Required]
         public DateTime FromDate { get; set; }
@@ -35,9 +35,9 @@ namespace TourOperator.ViewModels
         public string Phone { get; set; }
         [Required]
         public string Address { get; set; }
-        [Required]
+   
         public string BookingCode { get; set; }
-        [Required]
+       
         public bool BookingStatus { get; set; }
     }
 }

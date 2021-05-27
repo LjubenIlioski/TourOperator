@@ -100,7 +100,7 @@ namespace TourOperator
             //initializing custom roles 
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "Admin", "CustomerSupport", "ContentCreatort" };
+            string[] roleNames = { "Admin", "CustomerSupport", "ContentCreator" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)
@@ -113,26 +113,11 @@ namespace TourOperator
                 }
             }
 
-            //Here you could create a super user who will maintain the web app
-            var poweruser = new ApplicationUser
-            {
-
-                UserName = "ljuben_ilioski@hotmail.com",
-                Email = "ljuben_ilioski@hotmail.com",
-            };
-            //Ensure you have these values in your appsettings.json file
-            string userPWD = "Admin123";
             var _user = await UserManager.FindByEmailAsync("ljuben_ilioski@hotmail.com");
 
-            if (_user == null)
+            if (_user != null)
             {
-                var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
-                if (createPowerUser.Succeeded)
-                {
-                    //here we tie the new user to the role
-                    await UserManager.AddToRoleAsync(poweruser, "Admin");
-
-                }
+                    await UserManager.AddToRoleAsync(_user, "Admin");
             }
         }
     }

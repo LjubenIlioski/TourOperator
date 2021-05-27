@@ -33,7 +33,7 @@ namespace TourOperator.Controllers
             hotelOverviewDataModel.OverviewHotels = hotelOverviewModels;
             return View(hotelOverviewDataModel);
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         public IActionResult ManageOverview(string errorMessage, string successMessage)
         {
             ViewBag.ErrorMessage = errorMessage;
@@ -44,7 +44,7 @@ namespace TourOperator.Controllers
 
             return View(viewModels);
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -56,7 +56,7 @@ namespace TourOperator.Controllers
 
             return View(viewModel);
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         [HttpPost]
         public IActionResult Create(HotelCreateModel hotel)
         {
@@ -84,7 +84,7 @@ namespace TourOperator.Controllers
 
             return View(hotel);
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         [AllowAnonymous]
         public IActionResult AdminDetails(int id)
         {
@@ -107,7 +107,7 @@ namespace TourOperator.Controllers
                 return RedirectToAction("InternalError", "Info");
             }
         }
-
+       
         [AllowAnonymous]
         public IActionResult Details(int id)
         {
@@ -132,7 +132,7 @@ namespace TourOperator.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         public IActionResult Delete(int id)
         {
             try
@@ -153,7 +153,7 @@ namespace TourOperator.Controllers
                 return RedirectToAction("InternalError", "Info");
             }
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -173,7 +173,7 @@ namespace TourOperator.Controllers
 
             return View(viewModel);
         }
-
+        [Authorize(Roles = "Admin,ContentCreator")]
         [HttpPost]
         public IActionResult Update(HotelUpdateModel hotel)
         {

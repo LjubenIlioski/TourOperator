@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TourOperator</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Hotel" asp-action="Overview">TourOperator</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,20 +24,32 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="Overview">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="ManageOverview">ManageOverview</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="CheckBooking">Check Booking</a>
+                        </li>
+
+
+                        @if (User.IsInRole("ContentCreator")|| User.IsInRole("Admin"))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="ManageOverview">Manage Hotels</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="Create">CreateHotel</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="Create">Create New Hotel</a>
                         </li>
+                        }
+                        @if (User.IsInRole("CustomerSupport") || User.IsInRole("Admin"))
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="Overview">Bookings Overview</a>
                         </li>
+                        }
+                        @if (User.IsInRole("Admin")) {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="CheckBooking">CheckBooking</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="UserRoles" asp-action="Index">Users Manager</a>
                         </li>
+                        }
 
 
-                        
                     </ul>
                 </div>
             </div>
