@@ -7,7 +7,7 @@
 <h1>User Roles</h1>
 
 
-    <a class="nav-link text-dark btn btn-danger"  asp-area="Identity" asp-page="/Account/Register">Register new account </a>
+<a class="nav-link text-dark btn btn-danger" asp-area="Identity" asp-page="/Account/Register">Register new account </a>
 
 
 <table class="table table-striped">
@@ -24,13 +24,12 @@
         {
         <tr>
             <td>@user.Email</td>
-            <td>@user.UserId</td>
             <td>@string.Join(" , ", user.Roles.ToList())</td>
             <td>
-                <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId">Manage Roles</a>
+                <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Manage" asp-route-email="@user.Email">Manage Roles</a>
             </td>
             <td>
-                <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Delete" asp-route-userId="@user.UserId">Delete User</a>
+                <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Delete" asp-route-email="@user.Email">Delete User</a>
             </td>
         </tr>
         }
