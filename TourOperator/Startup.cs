@@ -77,6 +77,7 @@ namespace TourOperator
                 app.UseHsts();
             }
             CreateRoles(serviceProvider).Wait();
+            Initialize(serviceProvider).Wait();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -113,11 +114,27 @@ namespace TourOperator
                 }
             }
 
-            var _user = await UserManager.FindByEmailAsync("ljuben_ilioski@hotmail.com");
+        }
 
-            if (_user != null)
+        public async Task Initialize(IServiceProvider services)
+        {
+
+            using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                    await UserManager.AddToRoleAsync(_user, "Admin");
+
+                var manager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                var user = new ApplicationUser { UserName = "admin@gmail.com" ,Email = "admin@gmail.com", NormalizedEmail="ADMIN@GMAIL.COM" ,  };
+
+                var _user = await manager.FindByEmailAsync("admin@gmail.com");
+                if (_user == null)
+                {
+                    var result = await manager.CreateAsync(user, "Admin_123");
+                    await manager.AddToRoleAsync(user, "Admin");
+
+                }
+
+              
             }
         }
     }

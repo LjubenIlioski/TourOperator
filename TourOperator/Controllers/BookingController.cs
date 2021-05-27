@@ -151,13 +151,7 @@ namespace TourOperator.Controllers
                 return RedirectToAction("BookingResult", bookingResult);
             }
 
-            var bookings = _bookingService.GetAllBookings();
-
-            var bookingViewDataModel = new BookingViewDataModel();
-
-            var bookingViewModels = bookings.Select(x => x.ToBookingViewModel()).ToList();
-            bookingViewDataModel.OverviewBookings = bookingViewModels;
-            return View(bookingViewDataModel);
+           
         }
 
     }
