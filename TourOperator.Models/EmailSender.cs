@@ -23,8 +23,8 @@ namespace TourOperator.Models
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "ljubenilioskitest@gmail.com",  // replace with valid value
-                    Password = "ASA!BwHd5g3Thqy"  // replace with valid value
+                    UserName = "test@gmail.com",  // replace with valid value
+                    Password = "ASA"  // replace with valid value
                 };
                 smtp.Credentials = credential;
                 smtp.Host = "smtp.gmail.com";
@@ -35,7 +35,7 @@ namespace TourOperator.Models
                 message.Subject = subject;
                 message.Body = htmlMessage;
                 message.IsBodyHtml = true;
-                message.From = new MailAddress("ljubenilioskitest@gmail.com");
+                message.From = new MailAddress("test@gmail.com");
                 await smtp.SendMailAsync(message);
             }
         }
